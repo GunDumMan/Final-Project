@@ -31,3 +31,11 @@
 .width-100 {
     width: 100%;
 }
+
+.img2 {
+    height: 30rem;
+}
+
+.bg-darkSecondary {
+    background-color: #212529
+}
