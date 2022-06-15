@@ -57,6 +57,19 @@ function addtable(movie) {
         showDetailBlock(movie, movie.images.jpg.large_image_url, movie.rating)
     })
 
+    fetch('https://se104-project-backend.du.r.appspot.com/movies/642110318').then(response => {
+        return response.json().then(data => {
+            let movieList = data
+            for (movies of movieList) {
+                if (movies.title == movie.title) {
+                    poom2.style.backgroundColor = 'red';
+                    poom2.style.color = 'white';
+                    poom2.classList.add('disabled')
+                }
+            }
+        })
+    })
+
     poom2.addEventListener('click', function () {
         let confirmButton = confirm(`Add ${movie.title} to your favorites`)
         if (confirmButton) {
