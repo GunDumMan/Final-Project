@@ -58,8 +58,11 @@ function addtable(movie) {
     })
 
     poom2.addEventListener('click', function () {
-        poom2.style.backgroundColor = 'salmon';
-        poom2.style.color = 'white';
+        let confirmButton = confirm(`Add ${movie.title} to your favorites`)
+        if (confirmButton) {
+            poom2.style.backgroundColor = 'salmon';
+            poom2.style.color = 'white';
+        }
     })
 
 
