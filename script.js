@@ -60,8 +60,9 @@ function addtable(movie) {
     poom2.addEventListener('click', function () {
         let confirmButton = confirm(`Add ${movie.title} to your favorites`)
         if (confirmButton) {
-            poom2.style.backgroundColor = 'salmon';
+            poom2.style.backgroundColor = 'red';
             poom2.style.color = 'white';
+            poom2.classList.add('disabled')
 
             const addMovie = {
                 id: '642110318',
@@ -336,8 +337,9 @@ function showDetailBlock(movie, url, rated) {
     poom2.addEventListener('click', function () {
         let confirmButton = confirm(`Add ${movie.title} to your favorites`)
         if (confirmButton) {
-            poom2.style.backgroundColor = 'salmon';
+            poom2.style.backgroundColor = 'red';
             poom2.style.color = 'white';
+            poom2.classList.add('disabled')
 
             const addMovie = {
                 id: '642110318',
