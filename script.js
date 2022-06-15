@@ -618,7 +618,7 @@ function deleteMovie(id) {
             throw Error(response.statusText)
         }
     }).then(data => {
-        alert(`student name ${data.name} is now deleted`)
+        alert(`Anime ${data.title} is now deleted`)
         fetch('https://se104-project-backend.du.r.appspot.com/movies/642110318').then(response => {
             return response.json().then(data => {
                 console.log(data)
@@ -629,7 +629,7 @@ function deleteMovie(id) {
             })
         })
     }).catch(error => {
-        alert('your input student id is not in the database')
+        alert('your Movie id is not in the database')
     })
 }
 
