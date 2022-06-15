@@ -62,8 +62,25 @@ function addtable(movie) {
         if (confirmButton) {
             poom2.style.backgroundColor = 'salmon';
             poom2.style.color = 'white';
+
+            const addMovie = {
+                id: '642110318',
+                movie: {
+                    url: movie.url,
+                    image_url: movie.images.jpg.image_url,
+                    title: movie.title,
+                    synopsis: movie.synopsis,
+                    type: movie.type,
+                    episodes: movie.episodes,
+                    score: movie.score,
+                    rated: movie.rating,
+                },
+            };
+            console.log(addMovie)
+            addMovieToFavoriteList(addMovie)
         }
     })
+
 
 
 
@@ -270,15 +287,6 @@ function showDetailBlock(movie) {
     row.appendChild(col3)
     detailCard.appendChild(row)
 
-
-
-
-
-
-
-
-
-
 }
 
 function addMovieList(movieList) {
@@ -297,6 +305,7 @@ function onload() {
     fetch('https://api.jikan.moe/v4/top/anime').then(response => {
         return response.json().then(data => {
             let movie = data.data
+            detailCard.innerHTML = ''
             console.log(movie)
             addMovieList(movie)
         })
@@ -311,20 +320,62 @@ document.getElementById('searchButton').addEventListener('click', () => {
         }).then(student => {
             let movie2 = student.data
             console.log(movie2)
+            detailCard.innerHTML = ''
             movie_result.innerHTML = ''
             addMovieList(movie2)
         })
 });
 
 document.getElementById('promos').addEventListener('click', () => {
-    fetch('https://api.jikan.moe/v4/watch/promos/popular').then(response => {
+    fetch('https://api.jikan.moe/v4/watch/promos').then(response => {
         return response.json().then(data => {
             let movie = data.data
             console.log(movie)
+            detailCard.innerHTML = ''
             movie_result.innerHTML = ''
             addMovieListPromos(movie)
         })
     })
 });
+
+document.getElementById('season').addEventListener('click', () => {
+    fetch('https://api.jikan.moe/v4/seasons/now').then(response => {
+        return response.json().then(data => {
+            let movie = data.data
+            console.log(movie)
+            detailCard.innerHTML = ''
+            movie_result.innerHTML = ''
+            addMovieList(movie)
+        })
+    })
+});
+
+document.getElementById('upcoming').addEventListener('click', () => {
+    fetch('https://api.jikan.moe/v4/seasons/upcoming').then(response => {
+        return response.json().then(data => {
+            let movie = data.data
+            console.log(movie)
+            detailCard.innerHTML = ''
+            movie_result.innerHTML = ''
+            addMovieList(movie)
+        })
+    })
+});
+
+
+function addMovieToFavoriteList(movie) {
+    fetch(`https://se104-project-backend.du.r.appspot.com/movies/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(movie)
+    }).then(response => {
+        return response.json()
+    }).then(data => {
+        console.log('success', data)
+    })
+}
+
 
 
