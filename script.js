@@ -333,11 +333,14 @@ function showDetailBlock(movie, url, rated) {
     const poom2 = document.createElement('button')
     poom2.setAttribute('type', 'button')
 
+
+
     poom2.classList.add('btn')
     poom2.classList.add('btn-outline-danger')
     poom2.classList.add('mx-3')
     poom2.classList.add('mt-2')
     poom2.setAttribute('id', 'favButton')
+
     const icon = document.createElement('i')
     icon.classList.add('bi')
     icon.classList.add('bi-heart-fill')
@@ -346,6 +349,19 @@ function showDetailBlock(movie, url, rated) {
     poom2.appendChild(icon)
 
     poom2.innerHTML += "Favorite"
+
+    fetch('https://se104-project-backend.du.r.appspot.com/movies/642110318').then(response => {
+        return response.json().then(data => {
+            let movieList = data
+            for (movies of movieList) {
+                if (movies.title == movie.title) {
+                    poom2.style.backgroundColor = 'red';
+                    poom2.style.color = 'white';
+                    poom2.classList.add('disabled')
+                }
+            }
+        })
+    })
 
     poom2.addEventListener('click', function () {
         let confirmButton = confirm(`Add ${movie.title} to your favorites`)
